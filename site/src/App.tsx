@@ -46,6 +46,7 @@ interface BlogArticle {
 const LAW_LOGO_SRC = './law.png';
 
 const NAV_ITEMS: NavItem[] = [
+  { label: 'მთავარი', href: '#home' },
   { label: 'ჩვენ შესახებ', href: '#about' },
   { label: 'სერვისები', href: '#services' },
   { label: 'ბლოგი', href: '#blog' },
@@ -224,7 +225,7 @@ const Hero = () => {
   const opacity = useTransform(scrollY, [0, 300], [1, 0]);
 
   return (
-    <section className="relative min-h-screen flex items-center overflow-hidden bg-white pt-24">
+    <section id="home" className="relative min-h-screen flex items-center overflow-hidden bg-white pt-24">
       <motion.div 
         style={{ y: y1, opacity }}
         className="absolute inset-0 z-0 pointer-events-none"
