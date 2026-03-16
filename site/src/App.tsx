@@ -43,6 +43,8 @@ interface BlogArticle {
 }
 
 // --- Constants ---
+const LAW_LOGO_SRC = './law.png';
+
 const NAV_ITEMS: NavItem[] = [
   { label: 'ჩვენ შესახებ', href: '#about' },
   { label: 'სერვისები', href: '#services' },
@@ -134,10 +136,17 @@ const Navbar = () => {
         <motion.div 
           initial={{ opacity: 0, x: -20 }}
           animate={{ opacity: 1, x: 0 }}
-          className="flex flex-col group cursor-pointer"
+          className="flex items-center gap-4 group cursor-pointer"
         >
-          <span className="text-2xl font-bold tracking-tighter text-brand-dark group-hover:text-brand-gold transition-colors duration-500">AM LAW OFFICE</span>
-          <span className="text-[9px] uppercase tracking-[0.3em] text-brand-gold font-bold hidden sm:block opacity-80">ასლამაზიშვილი • მეზურნიშვილი</span>
+          <img
+            src={LAW_LOGO_SRC}
+            alt="AM Law Office Logo"
+            className="h-12 w-12 rounded-2xl object-cover shadow-[0_12px_30px_rgba(10,10,10,0.08)] transition-transform duration-500 group-hover:scale-105"
+          />
+          <div className="flex flex-col">
+            <span className="text-2xl font-bold tracking-tighter text-brand-dark group-hover:text-brand-gold transition-colors duration-500">AM LAW OFFICE</span>
+            <span className="text-[9px] uppercase tracking-[0.3em] text-brand-gold font-bold hidden sm:block opacity-80">ასლამაზიშვილი • მეზურნიშვილი</span>
+          </div>
         </motion.div>
 
         {/* Desktop Nav */}
@@ -940,10 +949,15 @@ const Footer = () => {
         <div className="grid grid-cols-1 md:grid-cols-4 gap-20 mb-32">
           <div className="md:col-span-2">
             <div className="flex items-center gap-4 mb-10">
-              <div className="w-12 h-12 rounded-full bg-brand-gold flex items-center justify-center">
-                <Scale className="w-6 h-6 text-brand-dark" />
+              <img
+                src={LAW_LOGO_SRC}
+                alt="AM Law Office Logo"
+                className="h-14 w-14 rounded-2xl object-cover shadow-[0_18px_40px_rgba(197,160,89,0.18)]"
+              />
+              <div>
+                <span className="block text-2xl font-serif font-bold tracking-tighter">AM LAW OFFICE</span>
+                <span className="mt-1 block text-[9px] uppercase tracking-[0.3em] text-brand-gold/80">ასლამაზიშვილი • მეზურნიშვილი</span>
               </div>
-              <span className="text-2xl font-serif font-bold tracking-tighter">AM LAW OFFICE</span>
             </div>
             <p className="text-white/40 max-w-md text-lg font-light leading-relaxed mb-10">
               ასლამაზიშვილი მეზურნიშვილის საადვოკატო ოფისი. <br />
