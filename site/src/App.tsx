@@ -744,7 +744,7 @@ const Team = () => {
     { 
       name: 'გიორგი ასლამაზიშვილი', 
       role: 'მმართველი პარტნიორი', 
-      image: 'https://picsum.photos/seed/lawyer-giorgi/600/800',
+      image: './giorgi-aslamazishvili.jpg',
       bio: "სამართლის ექსპერტი, საჯარო სამართლებრივი ანალიტიკოსი."
     },
     { 
