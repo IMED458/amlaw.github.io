@@ -211,82 +211,112 @@ const Navbar = () => {
 
 const Hero = () => {
   const { scrollY } = useScroll();
-  const y1 = useTransform(scrollY, [0, 500], [0, 250]);
-  const opacity = useTransform(scrollY, [0, 400], [1, 0]);
-  const scale = useTransform(scrollY, [0, 500], [1, 1.1]);
+  const y1 = useTransform(scrollY, [0, 500], [0, 200]);
+  const opacity = useTransform(scrollY, [0, 300], [1, 0]);
 
   return (
-    <section className="relative flex min-h-screen items-start justify-center overflow-hidden bg-white px-0 pb-20 pt-36 md:items-center md:pt-44">
-      {/* Background Elements */}
+    <section className="relative min-h-screen flex items-center overflow-hidden bg-white pt-24">
       <motion.div 
-        style={{ y: y1, opacity, scale }}
-        className="absolute inset-0 z-0"
+        style={{ y: y1, opacity }}
+        className="absolute inset-0 z-0 pointer-events-none"
       >
-        <div className="absolute top-[15%] left-[10%] w-[40rem] h-[40rem] bg-brand-gold/5 rounded-full blur-[120px]" />
+        <div className="absolute top-[10%] right-[10%] w-[30rem] h-[30rem] bg-brand-gold/5 rounded-full blur-[100px]" />
       </motion.div>
 
-      <div className="relative z-10 mx-auto mt-6 max-w-6xl px-8 text-center md:mt-0">
-        <motion.div
-          initial={{ opacity: 0, y: 40 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 1.2, ease: [0.22, 1, 0.36, 1] }}
-        >
+      <div className="relative z-10 w-full max-w-7xl mx-auto px-8">
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-24 items-center">
           <motion.div
-            initial={{ opacity: 0, scale: 0.9 }}
-            animate={{ opacity: 1, scale: 1 }}
-            transition={{ delay: 0.2, duration: 0.8 }}
-            className="inline-flex max-w-full items-center gap-3 rounded-full border border-brand-gold/20 bg-white/70 px-6 py-2 text-center text-[10px] font-bold uppercase tracking-[0.4em] text-brand-gold backdrop-blur-md md:mb-10"
+            initial={{ opacity: 0, y: 30 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 1, ease: [0.22, 1, 0.36, 1] }}
+            className="lg:col-span-7 text-left"
           >
-            <span className="w-1.5 h-1.5 rounded-full bg-brand-gold animate-ping" />
-            Lex Loquitur Pro Nobis
+            <motion.div
+              initial={{ opacity: 0, x: -20 }}
+              animate={{ opacity: 1, x: 0 }}
+              transition={{ delay: 0.2, duration: 0.8 }}
+              className="inline-flex items-center gap-3 px-5 py-2 mb-8 text-[10px] font-bold tracking-[0.4em] uppercase border border-brand-gold/20 text-brand-gold rounded-full bg-white/50 backdrop-blur-sm"
+            >
+              <span className="w-1.5 h-1.5 rounded-full bg-brand-gold animate-pulse" />
+              Lex Loquitur Pro Nobis
+            </motion.div>
+
+            <h1 className="text-5xl md:text-7xl lg:text-8xl font-serif font-bold leading-[1.1] mb-8 text-brand-gold tracking-tighter">
+              კანონი ჩვენი <br />
+              <span className="text-brand-dark italic font-normal">სახელით</span> <br />
+              ლაპარაკობს
+            </h1>
+
+            <motion.p 
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              transition={{ delay: 0.4, duration: 1 }}
+              className="text-lg md:text-xl text-brand-dark/60 max-w-xl mb-12 font-light leading-relaxed"
+            >
+              პროფესიონალური სამართლებრივი წარმომადგენლობა, რომელიც ეფუძნება სტრატეგიულ ხედვასა და უშეღავათო სიზუსტეს.
+            </motion.p>
+
+            <div className="flex flex-col sm:flex-row items-center gap-6">
+              <motion.a
+                href="#contact"
+                whileHover={{ scale: 1.02, y: -2 }}
+                whileTap={{ scale: 0.98 }}
+                className="group px-10 py-5 bg-brand-dark text-white rounded-full text-[11px] uppercase tracking-[0.2em] font-bold flex items-center gap-4 transition-all hover:bg-brand-gold shadow-xl shadow-brand-dark/10 w-full sm:w-auto justify-center"
+              >
+                კონსულტაცია
+                <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform duration-300" />
+              </motion.a>
+              <motion.a
+                href="tel:595244994"
+                whileHover={{ scale: 1.02, y: -2 }}
+                whileTap={{ scale: 0.98 }}
+                className="px-10 py-5 border border-brand-dark/10 rounded-full text-[11px] uppercase tracking-[0.2em] font-bold hover:bg-brand-dark/5 transition-all bg-white/50 backdrop-blur-sm w-full sm:w-auto inline-flex justify-center"
+              >
+                დაგვიკავშირდით
+              </motion.a>
+            </div>
           </motion.div>
-          
-          <h1 className="text-6xl md:text-[9rem] font-serif font-bold leading-[0.9] mb-10 text-brand-gold tracking-tighter">
-            კანონი ჩვენი <br />
-            <span className="text-brand-dark italic font-normal">სახელით</span> <br />
-            ლაპარაკობს
-          </h1>
-          
-          <motion.p 
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            transition={{ delay: 0.5, duration: 1 }}
-            className="text-lg md:text-2xl text-brand-dark/50 max-w-3xl mx-auto mb-16 font-light leading-relaxed"
+
+          <motion.div
+            initial={{ opacity: 0, scale: 0.95, x: 20 }}
+            animate={{ opacity: 1, scale: 1, x: 0 }}
+            transition={{ duration: 1.2, ease: [0.22, 1, 0.36, 1], delay: 0.2 }}
+            className="hidden lg:block lg:col-span-5 relative"
           >
-            პროფესიონალური სამართლებრივი წარმომადგენლობა, რომელიც <br className="hidden md:block" />
-            ეფუძნება სტრატეგიულ ხედვასა და უშეღავათო სიზუსტეს.
-          </motion.p>
-          
-          <div className="flex flex-col sm:flex-row items-center justify-center gap-8">
-            <motion.a
-              href="#contact"
-              whileHover={{ scale: 1.05, y: -2 }}
-              whileTap={{ scale: 0.98 }}
-              className="group px-12 py-5 bg-brand-dark text-white rounded-full text-[11px] uppercase tracking-[0.2em] font-bold flex items-center gap-4 transition-all hover:bg-brand-gold shadow-2xl shadow-brand-dark/20"
+            <div className="relative aspect-[4/5] rounded-[2.5rem] overflow-hidden shadow-[0_40px_80px_rgba(0,0,0,0.08)] group">
+              <img 
+                src="https://picsum.photos/seed/law-hero/1200/1500" 
+                alt="AM Law Office" 
+                className="w-full h-full object-cover grayscale group-hover:grayscale-0 transition-all duration-1000 scale-105 group-hover:scale-100"
+                referrerPolicy="no-referrer"
+              />
+              <div className="absolute inset-0 bg-brand-gold/5 mix-blend-multiply opacity-40 group-hover:opacity-0 transition-opacity duration-1000" />
+            </div>
+
+            <motion.div
+              animate={{ y: [0, -10, 0] }}
+              transition={{ duration: 5, repeat: Infinity, ease: "easeInOut" }}
+              className="absolute -bottom-8 -left-8 bg-white/90 backdrop-blur-xl p-6 rounded-2xl shadow-2xl border border-brand-gold/10 max-w-[180px]"
             >
-              კონსულტაციის დაჯავშნა
-              <ArrowRight className="w-4 h-4 group-hover:translate-x-2 transition-transform duration-500" />
-            </motion.a>
-            <motion.a
-              href="tel:595244994"
-              whileHover={{ scale: 1.05, y: -2 }}
-              whileTap={{ scale: 0.98 }}
-              className="px-12 py-5 border border-brand-dark/10 rounded-full text-[11px] uppercase tracking-[0.2em] font-bold hover:bg-brand-dark/5 transition-all bg-white/50 backdrop-blur-md"
-            >
-              დაგვიკავშირდით
-            </motion.a>
-          </div>
-        </motion.div>
+              <div className="w-10 h-10 bg-brand-gold/10 rounded-lg flex items-center justify-center mb-4">
+                <Scale className="w-5 h-5 text-brand-gold" />
+              </div>
+              <p className="text-[10px] font-bold uppercase tracking-widest text-brand-dark leading-tight">
+                უმაღლესი ხარისხის <br /> დაცვა
+              </p>
+            </motion.div>
+          </motion.div>
+        </div>
       </div>
 
-      {/* Scroll Indicator */}
       <motion.div 
         initial={{ opacity: 0, y: -20 }}
         animate={{ opacity: 1, y: 0 }}
-        transition={{ delay: 1.5, duration: 1, repeat: Infinity, repeatType: 'reverse' }}
-        className="absolute bottom-12 left-1/2 -translate-x-1/2 flex flex-col items-center gap-4"
+        transition={{ delay: 1.5, duration: 1 }}
+        className="absolute bottom-10 left-1/2 -translate-x-1/2 flex flex-col items-center gap-3"
       >
-        <div className="w-px h-20 bg-gradient-to-b from-brand-gold via-brand-gold/20 to-transparent" />
+        <span className="text-[8px] uppercase tracking-[0.4em] text-brand-dark/30 font-bold">Scroll</span>
+        <div className="w-px h-12 bg-gradient-to-b from-brand-gold via-brand-gold/20 to-transparent" />
       </motion.div>
     </section>
   );
@@ -824,13 +854,13 @@ const Contact = () => {
   return (
     <section id="contact" className="py-40 bg-white relative overflow-hidden">
       <div className="max-w-7xl mx-auto px-8">
-        <div className="grid grid-cols-1 xl:grid-cols-[minmax(0,0.9fr)_minmax(0,1.1fr)] items-start gap-16 xl:gap-20">
-          <div className="min-w-0 xl:pr-8">
+        <div className="grid grid-cols-1 2xl:grid-cols-[minmax(0,0.86fr)_minmax(0,1fr)] items-start gap-16 2xl:gap-24">
+          <div className="min-w-0 max-w-2xl">
             <div className="flex items-center gap-4 mb-8">
               <div className="w-12 h-px bg-brand-gold" />
               <span className="text-brand-gold font-bold text-[10px] tracking-[0.4em] uppercase">კონტაქტი</span>
             </div>
-            <h2 className="max-w-[12ch] text-5xl md:text-6xl xl:text-7xl font-serif font-bold text-brand-dark mb-12 tracking-tighter leading-tight">
+            <h2 className="max-w-[11ch] text-5xl md:text-6xl xl:text-7xl font-serif font-bold text-brand-dark mb-12 tracking-tighter leading-tight">
               დაგვიკავშირდით <br /> <span className="text-brand-gold italic font-normal">კონსულტაციისთვის</span>
             </h2>
             
@@ -871,7 +901,7 @@ const Contact = () => {
             initial={{ opacity: 0, x: 40 }}
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true }}
-            className="glass min-w-0 p-12 md:p-16 rounded-[3rem] shadow-[0_40px_100px_rgba(0,0,0,0.05)] border border-white/50 relative z-10"
+            className="glass min-w-0 p-12 md:p-16 rounded-[3rem] shadow-[0_40px_100px_rgba(0,0,0,0.05)] border border-white/50 relative z-10 2xl:ml-auto"
           >
             <form className="space-y-10">
               <div className="grid grid-cols-1 md:grid-cols-2 gap-10">
