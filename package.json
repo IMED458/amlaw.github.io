@@ -1,26 +1,26 @@
 {
   "name": "am-law-office",
   "private": true,
-  "version": "1.0.0",
+  "version": "1.1.0",
   "type": "module",
   "scripts": {
-    "dev": "vite --host 0.0.0.0 --port 3000",
-    "build": "vite build",
-    "preview": "vite preview --host 0.0.0.0 --port 4173",
+    "dev": "vite --config vite.config.ts --host 0.0.0.0 --port 3000",
+    "build": "vite build --config vite.config.ts && node scripts/sync-pages.mjs",
+    "preview": "vite preview --config vite.config.ts --host 0.0.0.0 --port 4173",
     "lint": "tsc --noEmit"
   },
   "dependencies": {
-    "@tailwindcss/vite": "^4.1.14",
-    "@vitejs/plugin-react": "^5.0.4",
     "lucide-react": "^0.546.0",
     "motion": "^12.23.24",
     "react": "^19.0.0",
     "react-dom": "^19.0.0"
   },
   "devDependencies": {
+    "@tailwindcss/vite": "^4.1.14",
     "@types/node": "^22.14.0",
+    "@vitejs/plugin-react": "^5.0.4",
     "tailwindcss": "^4.1.14",
     "typescript": "~5.8.2",
-    "vite": "^6.2.0"
+    "vite": "^6.4.1"
   }
 }

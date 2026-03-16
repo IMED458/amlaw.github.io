@@ -1,16 +1,11 @@
 # AM Law Office
 
-ლოკალური Vite/React პროექტი ასლამაზიშვილი მეზურნიშვილის საადვოკატო ოფისისთვის.
+საიტის source ახლა ინახება `site/` ფოლდერში, ხოლო build გენერირდება repo-ს root-ში, რათა GitHub Pages-მა პირდაპირ `main` ბრენჩიდან იმუშაოს.
 
-## გაშვება
+## Commands
 
-1. `npm install`
-2. `npm run dev`
+- `npm install`
+- `npm run dev`
+- `npm run build`
 
-საიტი გაეშვება მისამართზე `http://localhost:3000`.
-
-## შენიშვნები
-
-- დიზაინი გადაყვანილია ლოგოს მუქ ლურჯ და ოქროსფერ პალიტრაზე.
-- გარე placeholder სურათები ამოღებულია და პროექტში გამოყენებულია ადგილობრივი asset-ები.
-- თუ მოგვიანებით გინდათ რეალური პორტრეტის ფაილის ჩანაცვლება, შეცვალეთ `src/assets/aslamazishvili-portrait.svg`.
+`npm run build`-ის შემდეგ root-ში ახლდება `index.html`, `assets/` და `favicon.svg`, ამიტომ GitHub Pages დაუყოვნებლივ იღებს მუშა სტატიკურ ვერსიას.

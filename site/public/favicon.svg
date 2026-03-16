@@ -1,4 +1,4 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" role="img" aria-label="AM Law Office monogram">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
   <rect width="512" height="512" fill="#08162F"/>
   <defs>
     <linearGradient id="gold" x1="0" x2="1" y1="0" y2="1">
@@ -17,9 +17,7 @@
       fill-rule="evenodd"
       d="M203 136h41c23 0 36 13 36 37v183h-34V228h-28v128h-34V173c0-24 14-37 39-37Zm15 59h28v-26h-28v26Z"
     />
-    <path
-      d="M301 136h31l18 36 18-36h31v220h-32V193l-17 30-17-30v163h-32V136Z"
-    />
+    <path d="M301 136h31l18 36 18-36h31v220h-32V193l-17 30-17-30v163h-32V136Z" />
     <rect x="194" y="384" width="124" height="22" rx="2"/>
     <rect x="170" y="428" width="172" height="22" rx="2"/>
   </g>
