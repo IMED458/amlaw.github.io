@@ -14,6 +14,10 @@
   body {
     @apply bg-brand-pearl text-brand-dark selection:bg-brand-gold selection:text-white antialiased;
   }
+
+  section[id] {
+    scroll-margin-top: 8rem;
+  }
   
   h1, h2, h3, h4 {
     @apply tracking-tight;

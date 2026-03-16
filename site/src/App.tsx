@@ -1,5 +1,5 @@
-import React, { useState, useEffect, useRef } from 'react';
-import { motion, AnimatePresence, useScroll, useTransform, useSpring } from 'motion/react';
+import React, { useState, useEffect } from 'react';
+import { motion, AnimatePresence, useScroll, useTransform } from 'motion/react';
 import { 
   Scale, 
   Gavel, 
@@ -31,6 +31,17 @@ interface NavItem {
   href: string;
 }
 
+interface BlogArticle {
+  tag: string;
+  title: string;
+  date: string;
+  image: string;
+  excerpt: string;
+  details: string[];
+  externalUrl: string;
+  externalLabel: string;
+}
+
 // --- Constants ---
 const NAV_ITEMS: NavItem[] = [
   { label: 'ჩვენ შესახებ', href: '#about' },
@@ -39,6 +50,37 @@ const NAV_ITEMS: NavItem[] = [
   { label: 'გუნდი', href: '#team' },
   { label: 'კარიერა', href: '#careers' },
   { label: 'კონტაქტი', href: '#contact' },
+];
+
+const BLOG_ARTICLES: BlogArticle[] = [
+  {
+    tag: "ბლოგი",
+    title: "ახალი საკანონმდებლო ცვლილებების გავლენა ბიზნეს სექტორზე",
+    date: "12 მარტი, 2026",
+    image: "https://picsum.photos/seed/legal-blog/800/600",
+    excerpt: "ვაზუსტებთ როგორ ცვლის ახალი საკანონმდებლო ჩარჩო კომპანიების შიდა პოლიტიკას, კონტრაქტებსა და რისკების მართვას.",
+    details: [
+      "სტატია მიმოიხილავს იმ რეგულაციებს, რომლებიც ყველაზე მეტად ეხება მომსახურების ხელშეკრულებებს, შიდა კომპლაიანსსა და მესამე პირებთან პასუხისმგებლობის განაწილებას.",
+      "განსაკუთრებული ყურადღება ეთმობა იმას, თუ რა უნდა შეცვალოს კომპანიამ დოკუმენტბრუნვაში, როგორ უნდა გადაამოწმოს მოქმედი კონტრაქტები და რა რისკები შეიძლება გაჩნდეს ძველი ფორმულირებების დატოვების შემთხვევაში.",
+      "ჩვენი რეკომენდაციაა, ცვლილებების ძალაში შესვლამდე გადაიხედოს შიდა წესდებები, მომსახურების პირობები და მონაცემთა დამუშავების პროცედურები, რათა ბიზნესი შეხვდეს ახალ რეალობას სამართლებრივად გამართულ მდგომარეობაში."
+    ],
+    externalUrl: "https://www.facebook.com/",
+    externalLabel: "გახსენით ბმული"
+  },
+  {
+    tag: "სიახლე",
+    title: "გიორგი ასლამაზიშვილის კომენტარი რეზონანსულ საქმეზე",
+    date: "08 მარტი, 2026",
+    image: "https://picsum.photos/seed/media-legal/800/600",
+    excerpt: "საჯარო კომენტარში განხილულია საქმის სამართლებრივი ჩარჩო, დაცვის ტაქტიკა და პრაქტიკული გავლენა ფართო საზოგადოებაზე.",
+    details: [
+      "მასალაში ხაზი ესმება იმას, რომ მედიის ინტერესის მქონე საქმეებში სამართლებრივი სტრატეგია ვერ შემოიფარგლება მხოლოდ სასამართლო დარბაზით და აუცილებელია კომუნიკაციის სწორი მართვაც.",
+      "სრული ვერსია აერთიანებს პოზიციას მტკიცებულებათა სტანდარტზე, პროცესუალურ გარანტიებზე და იმაზე, რატომ არის გადამწყვეტი საქმის ადრეული ეტაპიდან სწორი დაცვის ხაზი.",
+      "ბმულზე გადასვლისას შეგიძლიათ ნახოთ სრული ვიდეო ან პოსტი იმ პლატფორმაზე, სადაც მასალა გამოქვეყნდა."
+    ],
+    externalUrl: "https://www.facebook.com/",
+    externalLabel: "გახსენით ვიდეო / პოსტი"
+  }
 ];
 
 const PRACTICE_AREAS = [
@@ -87,7 +129,7 @@ const Navbar = () => {
   }, []);
 
   return (
-    <nav className={`fixed top-0 left-0 w-full z-50 transition-all duration-700 ${isScrolled ? 'py-4 bg-white/90 backdrop-blur-2xl shadow-[0_2px_20px_rgba(0,0,0,0.03)]' : 'py-10 bg-transparent'}`}>
+    <nav className={`fixed top-0 left-0 w-full z-50 transition-all duration-700 ${isScrolled ? 'py-4 bg-white/90 backdrop-blur-2xl shadow-[0_2px_20px_rgba(0,0,0,0.03)]' : 'py-8 bg-transparent'}`}>
       <div className="max-w-7xl mx-auto px-8 flex justify-between items-center">
         <motion.div 
           initial={{ opacity: 0, x: -20 }}
@@ -174,7 +216,7 @@ const Hero = () => {
   const scale = useTransform(scrollY, [0, 500], [1, 1.1]);
 
   return (
-    <section className="relative h-screen flex items-center justify-center overflow-hidden bg-white">
+    <section className="relative flex min-h-screen items-start justify-center overflow-hidden bg-white px-0 pb-20 pt-36 md:items-center md:pt-44">
       {/* Background Elements */}
       <motion.div 
         style={{ y: y1, opacity, scale }}
@@ -183,7 +225,7 @@ const Hero = () => {
         <div className="absolute top-[15%] left-[10%] w-[40rem] h-[40rem] bg-brand-gold/5 rounded-full blur-[120px]" />
       </motion.div>
 
-      <div className="relative z-10 max-w-6xl mx-auto px-8 text-center">
+      <div className="relative z-10 mx-auto mt-6 max-w-6xl px-8 text-center md:mt-0">
         <motion.div
           initial={{ opacity: 0, y: 40 }}
           animate={{ opacity: 1, y: 0 }}
@@ -193,7 +235,7 @@ const Hero = () => {
             initial={{ opacity: 0, scale: 0.9 }}
             animate={{ opacity: 1, scale: 1 }}
             transition={{ delay: 0.2, duration: 0.8 }}
-            className="inline-flex items-center gap-3 px-6 py-2 mb-10 text-[10px] font-bold tracking-[0.4em] uppercase border border-brand-gold/20 text-brand-gold rounded-full bg-white/50 backdrop-blur-md"
+            className="inline-flex max-w-full items-center gap-3 rounded-full border border-brand-gold/20 bg-white/70 px-6 py-2 text-center text-[10px] font-bold uppercase tracking-[0.4em] text-brand-gold backdrop-blur-md md:mb-10"
           >
             <span className="w-1.5 h-1.5 rounded-full bg-brand-gold animate-ping" />
             Lex Loquitur Pro Nobis
@@ -216,21 +258,23 @@ const Hero = () => {
           </motion.p>
           
           <div className="flex flex-col sm:flex-row items-center justify-center gap-8">
-            <motion.button
+            <motion.a
+              href="#contact"
               whileHover={{ scale: 1.05, y: -2 }}
               whileTap={{ scale: 0.98 }}
               className="group px-12 py-5 bg-brand-dark text-white rounded-full text-[11px] uppercase tracking-[0.2em] font-bold flex items-center gap-4 transition-all hover:bg-brand-gold shadow-2xl shadow-brand-dark/20"
             >
               კონსულტაციის დაჯავშნა
               <ArrowRight className="w-4 h-4 group-hover:translate-x-2 transition-transform duration-500" />
-            </motion.button>
-            <motion.button
+            </motion.a>
+            <motion.a
+              href="tel:595244994"
               whileHover={{ scale: 1.05, y: -2 }}
               whileTap={{ scale: 0.98 }}
               className="px-12 py-5 border border-brand-dark/10 rounded-full text-[11px] uppercase tracking-[0.2em] font-bold hover:bg-brand-dark/5 transition-all bg-white/50 backdrop-blur-md"
             >
               დაგვიკავშირდით
-            </motion.button>
+            </motion.a>
           </div>
         </motion.div>
       </div>
@@ -458,20 +502,27 @@ const Services = () => {
 };
 
 const Blog = () => {
-  const articles = [
-    {
-      tag: "ბლოგი",
-      title: "ახალი საკანონმდებლო ცვლილებების გავლენა ბიზნეს სექტორზე",
-      date: "12 მარტი, 2026",
-      image: "https://picsum.photos/seed/legal-blog/800/600"
-    },
-    {
-      tag: "სიახლე",
-      title: "გიორგი ასლამაზიშვილის კომენტარი რეზონანსულ საქმეზე",
-      date: "08 მარტი, 2026",
-      image: "https://picsum.photos/seed/media-legal/800/600"
+  const [selectedArticle, setSelectedArticle] = useState<BlogArticle | null>(null);
+
+  useEffect(() => {
+    if (!selectedArticle) {
+      document.body.style.overflow = '';
+      return;
     }
-  ];
+
+    document.body.style.overflow = 'hidden';
+    const handleKeyDown = (event: KeyboardEvent) => {
+      if (event.key === 'Escape') {
+        setSelectedArticle(null);
+      }
+    };
+
+    window.addEventListener('keydown', handleKeyDown);
+    return () => {
+      document.body.style.overflow = '';
+      window.removeEventListener('keydown', handleKeyDown);
+    };
+  }, [selectedArticle]);
 
   return (
     <section id="blog" className="py-40 bg-white overflow-hidden">
@@ -486,7 +537,7 @@ const Blog = () => {
               სამართლებრივი <br /> <span className="text-brand-dark italic font-normal">ბლოგი</span>
             </h2>
           </div>
-          <button className="group flex items-center gap-6">
+          <button type="button" className="group flex items-center gap-6" onClick={() => setSelectedArticle(BLOG_ARTICLES[0])}>
             <span className="text-[10px] font-bold uppercase tracking-[0.3em] text-brand-dark">ყველა სტატია</span>
             <div className="w-14 h-14 rounded-full border border-brand-dark/10 flex items-center justify-center group-hover:bg-brand-dark group-hover:text-white transition-all duration-500">
               <ArrowRight className="w-5 h-5" />
@@ -495,14 +546,16 @@ const Blog = () => {
         </div>
 
         <div className="grid grid-cols-1 md:grid-cols-2 gap-16">
-          {articles.map((article, index) => (
-            <motion.div
+          {BLOG_ARTICLES.map((article, index) => (
+            <motion.button
               key={index}
+              type="button"
               initial={{ opacity: 0, y: 30 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ delay: index * 0.2 }}
-              className="group cursor-pointer"
+              className="group cursor-pointer text-left"
+              onClick={() => setSelectedArticle(article)}
             >
               <div className="aspect-[16/10] rounded-[2rem] overflow-hidden mb-10 relative">
                 <img 
@@ -516,16 +569,97 @@ const Blog = () => {
                     {article.tag}
                   </span>
                 </div>
+                <div className="absolute inset-0 flex items-end bg-gradient-to-t from-brand-dark/80 via-brand-dark/20 to-transparent p-8 opacity-0 transition-all duration-500 group-hover:opacity-100">
+                  <div className="translate-y-4 transition-transform duration-500 group-hover:translate-y-0">
+                    <span className="inline-flex items-center gap-3 rounded-full border border-white/30 bg-white/10 px-5 py-3 text-[10px] font-bold uppercase tracking-[0.3em] text-white backdrop-blur-md">
+                      ვრცლად
+                      <ArrowRight className="w-4 h-4" />
+                    </span>
+                  </div>
+                </div>
               </div>
               <div className="px-4">
                 <p className="text-[10px] font-bold text-brand-gold uppercase tracking-[0.2em] mb-4">{article.date}</p>
                 <h3 className="text-3xl font-serif font-bold text-brand-dark group-hover:text-brand-gold transition-colors duration-500 leading-snug">
                   {article.title}
                 </h3>
+                <p className="mt-4 text-lg font-light leading-relaxed text-brand-dark/55">{article.excerpt}</p>
               </div>
-            </motion.div>
+            </motion.button>
           ))}
         </div>
+
+        <AnimatePresence>
+          {selectedArticle && (
+            <motion.div
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
+              className="fixed inset-0 z-[80] flex items-center justify-center bg-brand-dark/55 px-4 py-8 backdrop-blur-md"
+              onClick={() => setSelectedArticle(null)}
+            >
+              <motion.div
+                initial={{ opacity: 0, y: 30, scale: 0.98 }}
+                animate={{ opacity: 1, y: 0, scale: 1 }}
+                exit={{ opacity: 0, y: 20, scale: 0.98 }}
+                transition={{ duration: 0.35 }}
+                className="relative max-h-[90vh] w-full max-w-4xl overflow-y-auto rounded-[2.5rem] bg-white p-5 shadow-[0_30px_80px_rgba(0,0,0,0.18)] md:p-8"
+                onClick={(event) => event.stopPropagation()}
+              >
+                <button
+                  type="button"
+                  onClick={() => setSelectedArticle(null)}
+                  className="sticky top-0 ml-auto flex h-12 w-12 items-center justify-center rounded-full border border-brand-dark/10 bg-white text-brand-dark transition hover:bg-brand-dark hover:text-white"
+                  aria-label="დახურვა"
+                >
+                  <X className="w-5 h-5" />
+                </button>
+
+                <div className="mt-2 overflow-hidden rounded-[2rem]">
+                  <img src={selectedArticle.image} alt={selectedArticle.title} className="h-full w-full object-cover" referrerPolicy="no-referrer" />
+                </div>
+
+                <div className="mt-8 flex flex-wrap items-center gap-4">
+                  <span className="rounded-full bg-brand-gold/10 px-5 py-2 text-[10px] font-bold uppercase tracking-[0.3em] text-brand-gold">
+                    {selectedArticle.tag}
+                  </span>
+                  <span className="text-[11px] font-bold uppercase tracking-[0.25em] text-brand-dark/35">
+                    {selectedArticle.date}
+                  </span>
+                </div>
+
+                <h3 className="mt-6 text-4xl md:text-5xl font-serif font-bold leading-tight text-brand-dark">
+                  {selectedArticle.title}
+                </h3>
+                <p className="mt-6 text-xl font-light leading-relaxed text-brand-dark/65">
+                  {selectedArticle.excerpt}
+                </p>
+
+                <div className="mt-8 space-y-6 text-lg leading-relaxed text-brand-dark/72">
+                  {selectedArticle.details.map((paragraph) => (
+                    <p key={paragraph}>{paragraph}</p>
+                  ))}
+                </div>
+
+                <div className="mt-10 flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
+                  <div className="inline-flex items-center gap-3 text-brand-dark/50">
+                    <BookOpen className="w-5 h-5 text-brand-gold" />
+                    სრული მასალის სანახავად გამოიყენეთ ბმული
+                  </div>
+                  <a
+                    href={selectedArticle.externalUrl}
+                    target="_blank"
+                    rel="noreferrer"
+                    className="inline-flex items-center justify-center gap-3 rounded-full bg-brand-dark px-8 py-4 text-[11px] font-bold uppercase tracking-[0.25em] text-white transition hover:bg-brand-gold"
+                  >
+                    {selectedArticle.externalLabel}
+                    <ExternalLink className="w-4 h-4" />
+                  </a>
+                </div>
+              </motion.div>
+            </motion.div>
+          )}
+        </AnimatePresence>
       </div>
     </section>
   );
@@ -660,12 +794,12 @@ const Careers = () => {
             <p className="text-xl text-brand-dark/60 font-light leading-relaxed mb-12">
               ჩვენ მუდმივად ვეძებთ ნიჭიერ იურისტებსა და სტაჟიორებს, რომლებსაც სურთ პროფესიული განვითარება ელიტარულ გარემოში.
             </p>
-            <button className="group flex items-center gap-6 px-10 py-5 bg-brand-dark text-white rounded-full font-bold uppercase tracking-widest hover:bg-brand-gold transition-all duration-500">
-              ვაკანსიები
+            <a href="mailto:info@amlaw.ge?subject=CV%20Submission" className="group inline-flex items-center gap-6 px-10 py-5 bg-brand-dark text-white rounded-full font-bold uppercase tracking-widest hover:bg-brand-gold transition-all duration-500">
+              გამოგვიგზავნე CV
               <div className="w-8 h-8 rounded-full bg-white/10 flex items-center justify-center group-hover:translate-x-2 transition-transform">
                 <ArrowRight className="w-4 h-4" />
               </div>
-            </button>
+            </a>
           </div>
           <div className="lg:w-1/2 relative">
             <div className="aspect-square rounded-[2.5rem] overflow-hidden rotate-3 shadow-2xl">
@@ -690,13 +824,13 @@ const Contact = () => {
   return (
     <section id="contact" className="py-40 bg-white relative overflow-hidden">
       <div className="max-w-7xl mx-auto px-8">
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-32">
-          <div>
+        <div className="grid grid-cols-1 xl:grid-cols-[minmax(0,0.9fr)_minmax(0,1.1fr)] items-start gap-16 xl:gap-20">
+          <div className="min-w-0 xl:pr-8">
             <div className="flex items-center gap-4 mb-8">
               <div className="w-12 h-px bg-brand-gold" />
               <span className="text-brand-gold font-bold text-[10px] tracking-[0.4em] uppercase">კონტაქტი</span>
             </div>
-            <h2 className="text-5xl md:text-7xl font-serif font-bold text-brand-dark mb-12 tracking-tighter leading-tight">
+            <h2 className="max-w-[12ch] text-5xl md:text-6xl xl:text-7xl font-serif font-bold text-brand-dark mb-12 tracking-tighter leading-tight">
               დაგვიკავშირდით <br /> <span className="text-brand-gold italic font-normal">კონსულტაციისთვის</span>
             </h2>
             
@@ -737,7 +871,7 @@ const Contact = () => {
             initial={{ opacity: 0, x: 40 }}
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true }}
-            className="glass p-12 md:p-16 rounded-[3rem] shadow-[0_40px_100px_rgba(0,0,0,0.05)] border border-white/50"
+            className="glass min-w-0 p-12 md:p-16 rounded-[3rem] shadow-[0_40px_100px_rgba(0,0,0,0.05)] border border-white/50 relative z-10"
           >
             <form className="space-y-10">
               <div className="grid grid-cols-1 md:grid-cols-2 gap-10">
