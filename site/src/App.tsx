@@ -585,7 +585,7 @@ const Blog = () => {
           </button>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-16">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-16 items-start">
           {BLOG_ARTICLES.map((article, index) => (
             <motion.button
               key={index}
@@ -594,10 +594,10 @@ const Blog = () => {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ delay: index * 0.2 }}
-              className="group cursor-pointer text-left"
+              className="group flex h-full w-full flex-col cursor-pointer text-left"
               onClick={() => setSelectedArticle(article)}
             >
-              <div className="aspect-[16/10] rounded-[2rem] overflow-hidden mb-10 relative">
+              <div className="relative mb-10 aspect-[16/10] w-full overflow-hidden rounded-[2rem]">
                 <img 
                   src={article.image} 
                   alt={article.title} 
@@ -618,7 +618,7 @@ const Blog = () => {
                   </div>
                 </div>
               </div>
-              <div className="px-4">
+              <div className="flex-1 px-4">
                 <p className="text-[10px] font-bold text-brand-gold uppercase tracking-[0.2em] mb-4">{article.date}</p>
                 <h3 className="text-3xl font-serif font-bold text-brand-dark group-hover:text-brand-gold transition-colors duration-500 leading-snug">
                   {article.title}
