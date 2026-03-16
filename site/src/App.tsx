@@ -132,7 +132,7 @@ const Navbar = () => {
   }, []);
 
   return (
-    <nav className={`fixed top-0 left-0 w-full z-50 transition-all duration-700 ${isScrolled ? 'py-3 sm:py-4 bg-white/90 backdrop-blur-2xl shadow-[0_2px_20px_rgba(0,0,0,0.03)]' : 'py-4 sm:py-8 bg-transparent'}`}>
+    <nav className={`fixed top-0 left-0 w-full z-50 transition-all duration-700 ${isScrolled ? 'py-3 sm:py-4 bg-white/90 backdrop-blur-2xl shadow-[0_2px_20px_rgba(0,0,0,0.03)]' : 'py-3 sm:py-8 bg-white/96 shadow-[0_2px_20px_rgba(0,0,0,0.03)] md:bg-transparent md:shadow-none'}`}>
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex justify-between items-center gap-4">
         <motion.div 
           initial={{ opacity: 0, x: -20 }}
@@ -176,7 +176,11 @@ const Navbar = () => {
         </div>
 
         {/* Mobile Toggle */}
-        <button className="md:hidden text-brand-dark p-2" onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}>
+        <button
+          className="md:hidden flex h-11 w-11 items-center justify-center rounded-full border border-brand-dark/10 bg-white text-brand-dark shadow-[0_10px_30px_rgba(0,0,0,0.08)]"
+          onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
+          aria-label={isMobileMenuOpen ? 'დახურე მენიუ' : 'გახსენი მენიუ'}
+        >
           {isMobileMenuOpen ? <X size={24} /> : <Menu size={24} />}
         </button>
       </div>
@@ -185,12 +189,31 @@ const Navbar = () => {
       <AnimatePresence>
         {isMobileMenuOpen && (
           <motion.div
-            initial={{ opacity: 0, y: -20 }}
-            animate={{ opacity: 1, y: 0 }}
-            exit={{ opacity: 0, y: -20 }}
-            className="md:hidden fixed inset-0 top-[80px] bg-white/95 backdrop-blur-3xl z-40"
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            className="fixed inset-0 z-40 bg-brand-dark/10 px-4 pt-20 backdrop-blur-sm md:hidden"
+            onClick={() => setIsMobileMenuOpen(false)}
           >
-            <div className="flex flex-col items-center justify-center h-full gap-8 p-8">
+            <motion.div
+              initial={{ opacity: 0, y: -18, scale: 0.98 }}
+              animate={{ opacity: 1, y: 0, scale: 1 }}
+              exit={{ opacity: 0, y: -18, scale: 0.98 }}
+              className="mx-auto max-w-sm rounded-[2rem] border border-brand-dark/8 bg-white/96 p-5 shadow-[0_24px_60px_rgba(0,0,0,0.12)]"
+              onClick={(event) => event.stopPropagation()}
+            >
+              <div className="mb-4 flex items-center gap-3 border-b border-brand-dark/8 pb-4">
+                <img
+                  src={LAW_LOGO_SRC}
+                  alt="AM Law Office Logo"
+                  className="h-11 w-11 rounded-2xl object-cover"
+                />
+                <div>
+                  <p className="text-base font-bold tracking-tight text-brand-dark">AM LAW OFFICE</p>
+                  <p className="text-[9px] font-bold uppercase tracking-[0.22em] text-brand-gold">ნავიგაცია</p>
+                </div>
+              </div>
+              <div className="flex flex-col gap-3">
               {NAV_ITEMS.map((item, i) => (
                 <motion.a 
                   key={item.label} 
@@ -198,7 +221,7 @@ const Navbar = () => {
                   initial={{ opacity: 0, y: 10 }}
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ delay: i * 0.1 }}
-                  className="text-2xl font-serif font-bold text-brand-dark"
+                  className="rounded-2xl border border-brand-dark/8 px-4 py-3 text-lg font-serif font-bold text-brand-dark transition-colors hover:bg-brand-pearl"
                   onClick={() => setIsMobileMenuOpen(false)}
                 >
                   {item.label}
@@ -206,12 +229,13 @@ const Navbar = () => {
               ))}
               <motion.a
                 href="#contact"
-                className="mt-4 px-12 py-4 bg-brand-gold text-white rounded-full font-bold uppercase tracking-widest text-xs"
+                className="mt-3 inline-flex items-center justify-center rounded-full bg-brand-dark px-6 py-4 text-[11px] font-bold uppercase tracking-[0.22em] text-white transition-colors hover:bg-brand-gold"
                 onClick={() => setIsMobileMenuOpen(false)}
               >
                 დაგვიკავშირდით
               </motion.a>
-            </div>
+              </div>
+            </motion.div>
           </motion.div>
         )}
       </AnimatePresence>
@@ -378,6 +402,8 @@ const LegalInsightsTicker = () => {
 };
 
 const About = () => {
+  const [isAboutPhotoActive, setIsAboutPhotoActive] = useState(false);
+
   return (
     <section id="about" className="relative overflow-hidden bg-white py-24 md:py-40">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -426,15 +452,23 @@ const About = () => {
             transition={{ duration: 1 }}
             className="relative"
           >
-            <div className="aspect-[4/5] rounded-[2rem] overflow-hidden shadow-[0_40px_80px_rgba(0,0,0,0.08)] relative group">
+            <button
+              type="button"
+              onClick={() => setIsAboutPhotoActive((current) => !current)}
+              className="group relative aspect-[4/5] w-full overflow-hidden rounded-[2rem] shadow-[0_40px_80px_rgba(0,0,0,0.08)] text-left"
+            >
               <img 
                 src="https://picsum.photos/seed/law-office-premium/1200/1500" 
                 alt="Law Office" 
-                className="h-full w-full object-cover grayscale-0 transition-all duration-1000 scale-110 md:grayscale md:group-hover:grayscale-0 group-hover:scale-100"
+                className={`h-full w-full object-cover transition-all duration-1000 ${
+                  isAboutPhotoActive
+                    ? 'scale-100 grayscale-0'
+                    : 'scale-110 grayscale md:group-hover:grayscale-0 group-hover:scale-100'
+                }`}
                 referrerPolicy="no-referrer"
               />
               <div className="absolute inset-0 bg-brand-dark/10 group-hover:bg-transparent transition-all duration-1000" />
-            </div>
+            </button>
             
             <motion.div 
               animate={{ y: [0, -15, 0] }}
@@ -505,12 +539,8 @@ const Services = () => {
 
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-px bg-white/10 border border-white/10">
           {services.map((service, index) => (
-            <motion.div
+            <div
               key={index}
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ delay: index * 0.1 }}
               className="group relative cursor-pointer overflow-hidden bg-brand-dark p-8 transition-all duration-700 hover:bg-brand-gold sm:p-12"
             >
               <div className="absolute top-0 right-0 p-8 opacity-10 group-hover:opacity-20 transition-opacity duration-700">
@@ -533,7 +563,7 @@ const Services = () => {
                   <ArrowRight className="w-4 h-4 text-white" />
                 </div>
               </div>
-            </motion.div>
+            </div>
           ))}
         </div>
       </div>
@@ -740,6 +770,7 @@ const Impact = () => {
 };
 
 const Team = () => {
+  const [activeMemberPhoto, setActiveMemberPhoto] = useState<string | null>(null);
   const members = [
     { 
       name: 'გიორგი ასლამაზიშვილი', 
@@ -787,11 +818,19 @@ const Team = () => {
               transition={{ delay: i * 0.2 }}
               className="group"
             >
-              <div className="aspect-[3/4] rounded-[2.5rem] overflow-hidden mb-10 relative shadow-[0_30px_60px_rgba(0,0,0,0.05)]">
+              <button
+                type="button"
+                onClick={() =>
+                  setActiveMemberPhoto((current) => (current === member.name ? null : member.name))
+                }
+                className="relative mb-10 aspect-[3/4] w-full overflow-hidden rounded-[2.5rem] shadow-[0_30px_60px_rgba(0,0,0,0.05)] text-left"
+              >
                 <img 
                   src={member.image} 
                   alt={member.name} 
-                  className="h-full w-full object-cover grayscale-0 transition-all duration-1000 group-hover:scale-110 md:grayscale md:group-hover:grayscale-0"
+                  className={`h-full w-full object-cover transition-all duration-1000 group-hover:scale-110 ${
+                    activeMemberPhoto === member.name ? 'grayscale-0' : 'grayscale md:group-hover:grayscale-0'
+                  }`}
                   onError={(event) => {
                     if (member.fallbackImage) {
                       event.currentTarget.onerror = null;
@@ -813,7 +852,7 @@ const Team = () => {
                     </div>
                   </div>
                 </div>
-              </div>
+              </button>
               <div className="px-4">
                 <h3 className="text-3xl font-serif font-bold text-brand-dark mb-2">{member.name}</h3>
                 <p className="text-brand-gold text-[10px] font-bold uppercase tracking-[0.3em]">{member.role}</p>
@@ -827,6 +866,8 @@ const Team = () => {
 };
 
 const Careers = () => {
+  const [isCareersPhotoActive, setIsCareersPhotoActive] = useState(false);
+
   return (
     <section id="careers" className="bg-white py-24 md:py-40">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -849,14 +890,22 @@ const Careers = () => {
             </a>
           </div>
           <div className="lg:w-1/2 relative">
-            <div className="aspect-square rounded-[2.5rem] overflow-hidden rotate-3 shadow-2xl">
-              <img 
-                src="https://picsum.photos/seed/law-career/800/800" 
-                alt="Careers" 
-                className="h-full w-full object-cover grayscale-0 transition-all duration-1000 md:grayscale md:hover:grayscale-0"
-                referrerPolicy="no-referrer"
-              />
-            </div>
+            <button
+              type="button"
+              onClick={() => setIsCareersPhotoActive((current) => !current)}
+              className="block w-full rotate-3 rounded-[2.5rem] text-left shadow-2xl"
+            >
+              <div className="aspect-square overflow-hidden rounded-[2.5rem]">
+                <img 
+                  src="https://picsum.photos/seed/law-career/800/800" 
+                  alt="Careers" 
+                  className={`h-full w-full object-cover transition-all duration-1000 ${
+                    isCareersPhotoActive ? 'grayscale-0' : 'grayscale md:hover:grayscale-0'
+                  }`}
+                  referrerPolicy="no-referrer"
+                />
+              </div>
+            </button>
             <div className="absolute right-4 top-4 hidden h-32 w-32 -rotate-12 items-center justify-center rounded-full border border-white/20 bg-brand-gold/10 p-6 text-center backdrop-blur-xl sm:flex md:-top-10 md:-right-10 md:h-48 md:w-48">
               <p className="text-[10px] font-bold uppercase tracking-widest text-brand-gold">სტაჟირების <br /> პროგრამა</p>
             </div>
@@ -877,8 +926,8 @@ const Contact = () => {
               <div className="w-12 h-px bg-brand-gold" />
               <span className="text-brand-gold font-bold text-[10px] tracking-[0.4em] uppercase">კონტაქტი</span>
             </div>
-            <h2 className="mb-10 max-w-[11ch] text-4xl font-serif font-bold leading-tight tracking-tighter text-brand-dark sm:mb-12 sm:text-5xl md:text-6xl xl:text-7xl">
-              დაგვიკავშირდით <br /> <span className="text-brand-gold italic font-normal">კონსულტაციისთვის</span>
+            <h2 className="mb-8 max-w-none text-[clamp(2rem,7.8vw,3rem)] font-serif font-bold leading-[1.08] tracking-tighter text-brand-dark sm:mb-12 sm:max-w-[11ch] sm:text-5xl md:text-6xl xl:text-7xl">
+              დაგვიკავშირდით <span className="text-brand-gold italic font-normal sm:block">კონსულტაციისთვის</span>
             </h2>
             
             <div className="mt-12 space-y-10 sm:mt-20 sm:space-y-12">
