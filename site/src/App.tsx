@@ -744,7 +744,8 @@ const Team = () => {
     { 
       name: 'გიორგი ასლამაზიშვილი', 
       role: 'მმართველი პარტნიორი', 
-      image: './giorgi-aslamazishvili.jpg',
+      image: './aslamazishvili.png',
+      fallbackImage: './giorgi-aslamazishvili.jpg',
       bio: "სამართლის ექსპერტი, საჯარო სამართლებრივი ანალიტიკოსი."
     },
     { 
@@ -791,6 +792,12 @@ const Team = () => {
                   src={member.image} 
                   alt={member.name} 
                   className="w-full h-full object-cover grayscale group-hover:grayscale-0 group-hover:scale-110 transition-all duration-1000"
+                  onError={(event) => {
+                    if (member.fallbackImage) {
+                      event.currentTarget.onerror = null;
+                      event.currentTarget.src = member.fallbackImage;
+                    }
+                  }}
                   referrerPolicy="no-referrer"
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-brand-dark/90 via-brand-dark/20 to-transparent opacity-0 group-hover:opacity-100 transition-all duration-700 flex flex-col justify-end p-10">
