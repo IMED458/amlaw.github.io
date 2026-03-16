@@ -1,0 +1,26 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" role="img" aria-label="AM Law Office monogram">
+  <rect width="512" height="512" fill="#08162F"/>
+  <defs>
+    <linearGradient id="gold" x1="0" x2="1" y1="0" y2="1">
+      <stop offset="0" stop-color="#E7D2A8"/>
+      <stop offset=".55" stop-color="#D9BE8B"/>
+      <stop offset="1" stop-color="#C8A86D"/>
+    </linearGradient>
+  </defs>
+  <g stroke="url(#gold)" stroke-width="32" fill="none" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M140 106H372"/>
+    <path d="M140 106C104 106 78 130 78 160C78 189 99 212 128 212C158 212 178 191 178 160" />
+    <path d="M372 106C408 106 434 130 434 160C434 189 413 212 384 212C354 212 334 191 334 160" />
+  </g>
+  <g fill="url(#gold)">
+    <path
+      fill-rule="evenodd"
+      d="M203 136h41c23 0 36 13 36 37v183h-34V228h-28v128h-34V173c0-24 14-37 39-37Zm15 59h28v-26h-28v26Z"
+    />
+    <path
+      d="M301 136h31l18 36 18-36h31v220h-32V193l-17 30-17-30v163h-32V136Z"
+    />
+    <rect x="194" y="384" width="124" height="22" rx="2"/>
+    <rect x="170" y="428" width="172" height="22" rx="2"/>
+  </g>
+</svg>
