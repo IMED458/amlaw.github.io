@@ -132,8 +132,8 @@ const Navbar = () => {
   }, []);
 
   return (
-    <nav className={`fixed top-0 left-0 w-full z-50 transition-all duration-700 ${isScrolled ? 'py-4 bg-white/90 backdrop-blur-2xl shadow-[0_2px_20px_rgba(0,0,0,0.03)]' : 'py-8 bg-transparent'}`}>
-      <div className="max-w-7xl mx-auto px-8 flex justify-between items-center">
+    <nav className={`fixed top-0 left-0 w-full z-50 transition-all duration-700 ${isScrolled ? 'py-3 sm:py-4 bg-white/90 backdrop-blur-2xl shadow-[0_2px_20px_rgba(0,0,0,0.03)]' : 'py-4 sm:py-8 bg-transparent'}`}>
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex justify-between items-center gap-4">
         <motion.div 
           initial={{ opacity: 0, x: -20 }}
           animate={{ opacity: 1, x: 0 }}
@@ -142,10 +142,10 @@ const Navbar = () => {
           <img
             src={LAW_LOGO_SRC}
             alt="AM Law Office Logo"
-            className="h-12 w-12 rounded-2xl object-cover shadow-[0_12px_30px_rgba(10,10,10,0.08)] transition-transform duration-500 group-hover:scale-105"
+            className="h-10 w-10 sm:h-12 sm:w-12 rounded-2xl object-cover shadow-[0_12px_30px_rgba(10,10,10,0.08)] transition-transform duration-500 group-hover:scale-105"
           />
           <div className="flex flex-col">
-            <span className="text-2xl font-bold tracking-tighter text-brand-dark group-hover:text-brand-gold transition-colors duration-500">AM LAW OFFICE</span>
+            <span className="text-lg sm:text-2xl font-bold tracking-tighter text-brand-dark group-hover:text-brand-gold transition-colors duration-500">AM LAW OFFICE</span>
             <span className="text-[9px] uppercase tracking-[0.3em] text-brand-gold font-bold hidden sm:block opacity-80">ასლამაზიშვილი • მეზურნიშვილი</span>
           </div>
         </motion.div>
@@ -225,16 +225,16 @@ const Hero = () => {
   const opacity = useTransform(scrollY, [0, 300], [1, 0]);
 
   return (
-    <section id="home" className="relative min-h-screen flex items-center overflow-hidden bg-white pt-24">
+    <section id="home" className="relative min-h-screen flex items-center overflow-hidden bg-white pt-28 sm:pt-24">
       <motion.div 
         style={{ y: y1, opacity }}
         className="absolute inset-0 z-0 pointer-events-none"
       >
-        <div className="absolute top-[10%] right-[10%] w-[30rem] h-[30rem] bg-brand-gold/5 rounded-full blur-[100px]" />
+        <div className="absolute top-[10%] right-[10%] h-60 w-60 rounded-full bg-brand-gold/5 blur-[100px] sm:h-[30rem] sm:w-[30rem]" />
       </motion.div>
 
-      <div className="relative z-10 w-full max-w-7xl mx-auto px-8">
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-24 items-center">
+      <div className="relative z-10 w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="grid grid-cols-1 items-center gap-10 sm:gap-12 lg:grid-cols-12 lg:gap-24">
           <motion.div
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
@@ -245,13 +245,13 @@ const Hero = () => {
               initial={{ opacity: 0, x: -20 }}
               animate={{ opacity: 1, x: 0 }}
               transition={{ delay: 0.2, duration: 0.8 }}
-              className="inline-flex items-center gap-3 px-5 py-2 mb-8 text-[10px] font-bold tracking-[0.4em] uppercase border border-brand-gold/20 text-brand-gold rounded-full bg-white/50 backdrop-blur-sm"
+              className="mb-6 inline-flex max-w-full flex-wrap items-center justify-center gap-2 rounded-full border border-brand-gold/20 bg-white/50 px-4 py-2 text-center text-[9px] font-bold uppercase tracking-[0.25em] text-brand-gold backdrop-blur-sm sm:mb-8 sm:gap-3 sm:px-5 sm:text-[10px] sm:tracking-[0.4em]"
             >
               <span className="w-1.5 h-1.5 rounded-full bg-brand-gold animate-pulse" />
               Lex Loquitur Pro Nobis
             </motion.div>
 
-            <h1 className="text-5xl md:text-7xl lg:text-8xl font-serif font-bold leading-[1.1] mb-8 text-brand-gold tracking-tighter">
+            <h1 className="mb-6 max-w-[12ch] text-[clamp(2.9rem,14vw,5.4rem)] font-serif font-bold leading-[1.02] text-brand-gold tracking-tighter sm:mb-8 sm:text-6xl sm:leading-[1.08] md:text-7xl lg:text-8xl lg:leading-[1.1]">
               კანონი ჩვენი <br />
               <span className="text-brand-dark italic font-normal">სახელით</span> <br />
               ლაპარაკობს
@@ -261,17 +261,17 @@ const Hero = () => {
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               transition={{ delay: 0.4, duration: 1 }}
-              className="text-lg md:text-xl text-brand-dark/60 max-w-xl mb-12 font-light leading-relaxed"
+              className="mb-10 max-w-xl text-base leading-relaxed text-brand-dark/60 font-light sm:mb-12 sm:text-lg md:text-xl"
             >
               პროფესიონალური სამართლებრივი წარმომადგენლობა, რომელიც ეფუძნება სტრატეგიულ ხედვასა და უშეღავათო სიზუსტეს.
             </motion.p>
 
-            <div className="flex flex-col sm:flex-row items-center gap-6">
+            <div className="flex flex-col items-stretch gap-4 sm:flex-row sm:items-center sm:gap-6">
               <motion.a
                 href="#contact"
                 whileHover={{ scale: 1.02, y: -2 }}
                 whileTap={{ scale: 0.98 }}
-                className="group px-10 py-5 bg-brand-dark text-white rounded-full text-[11px] uppercase tracking-[0.2em] font-bold flex items-center gap-4 transition-all hover:bg-brand-gold shadow-xl shadow-brand-dark/10 w-full sm:w-auto justify-center"
+                className="group flex w-full items-center justify-center gap-4 rounded-full bg-brand-dark px-8 py-4 text-[10px] font-bold uppercase tracking-[0.16em] text-white shadow-xl shadow-brand-dark/10 transition-all hover:bg-brand-gold sm:w-auto sm:px-10 sm:py-5 sm:text-[11px] sm:tracking-[0.2em]"
               >
                 კონსულტაცია
                 <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform duration-300" />
@@ -280,7 +280,7 @@ const Hero = () => {
                 href="tel:595244994"
                 whileHover={{ scale: 1.02, y: -2 }}
                 whileTap={{ scale: 0.98 }}
-                className="px-10 py-5 border border-brand-dark/10 rounded-full text-[11px] uppercase tracking-[0.2em] font-bold hover:bg-brand-dark/5 transition-all bg-white/50 backdrop-blur-sm w-full sm:w-auto inline-flex justify-center"
+                className="inline-flex w-full justify-center rounded-full border border-brand-dark/10 bg-white/50 px-8 py-4 text-[10px] font-bold uppercase tracking-[0.16em] backdrop-blur-sm transition-all hover:bg-brand-dark/5 sm:w-auto sm:px-10 sm:py-5 sm:text-[11px] sm:tracking-[0.2em]"
               >
                 დაგვიკავშირდით
               </motion.a>
@@ -297,7 +297,7 @@ const Hero = () => {
               <img 
                 src="https://picsum.photos/seed/law-hero/1200/1500" 
                 alt="AM Law Office" 
-                className="w-full h-full object-cover grayscale group-hover:grayscale-0 transition-all duration-1000 scale-105 group-hover:scale-100"
+                className="h-full w-full object-cover grayscale-0 transition-all duration-1000 scale-105 md:grayscale md:group-hover:grayscale-0 group-hover:scale-100"
                 referrerPolicy="no-referrer"
               />
               <div className="absolute inset-0 bg-brand-gold/5 mix-blend-multiply opacity-40 group-hover:opacity-0 transition-opacity duration-1000" />
@@ -323,7 +323,7 @@ const Hero = () => {
         initial={{ opacity: 0, y: -20 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ delay: 1.5, duration: 1 }}
-        className="absolute bottom-10 left-1/2 -translate-x-1/2 flex flex-col items-center gap-3"
+        className="absolute bottom-10 left-1/2 hidden -translate-x-1/2 flex-col items-center gap-3 md:flex"
       >
         <span className="text-[8px] uppercase tracking-[0.4em] text-brand-dark/30 font-bold">Scroll</span>
         <div className="w-px h-12 bg-gradient-to-b from-brand-gold via-brand-gold/20 to-transparent" />
@@ -379,9 +379,9 @@ const LegalInsightsTicker = () => {
 
 const About = () => {
   return (
-    <section id="about" className="py-40 bg-white relative overflow-hidden">
-      <div className="max-w-7xl mx-auto px-8">
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-32 items-center">
+    <section id="about" className="relative overflow-hidden bg-white py-24 md:py-40">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="grid grid-cols-1 items-center gap-14 lg:grid-cols-2 lg:gap-32">
           <motion.div
             initial={{ opacity: 0, x: -40 }}
             whileInView={{ opacity: 1, x: 0 }}
@@ -393,12 +393,12 @@ const About = () => {
               <span className="text-brand-gold font-bold text-[10px] tracking-[0.4em] uppercase">ჩვენ შესახებ</span>
             </div>
             
-            <h2 className="text-5xl md:text-7xl font-serif font-bold mb-12 leading-[1.1] text-brand-gold tracking-tighter">
+            <h2 className="mb-10 text-4xl font-serif font-bold leading-[1.08] text-brand-gold tracking-tighter sm:mb-12 sm:text-5xl md:text-7xl md:leading-[1.1]">
               თანამედროვე ხედვა <br /> 
               <span className="text-brand-dark italic font-normal">სამართლებრივ</span> დაცვაზე
             </h2>
             
-            <div className="space-y-8 text-brand-dark/60 leading-relaxed font-light text-xl">
+            <div className="space-y-6 text-base leading-relaxed text-brand-dark/60 font-light sm:space-y-8 sm:text-xl">
               <p>
                 AM Law Office არის პრემიუმ კლასის საადვოკატო ოფისი, რომელიც აერთიანებს აკადემიურ სიღრმესა და პრაქტიკულ სისხარტეს.
               </p>
@@ -409,11 +409,11 @@ const About = () => {
             
             <div className="mt-16 grid grid-cols-2 gap-12">
               <div className="group">
-                <span className="text-5xl font-serif font-bold text-brand-gold group-hover:text-brand-dark transition-colors duration-500">100%</span>
+                <span className="text-4xl font-serif font-bold text-brand-gold transition-colors duration-500 group-hover:text-brand-dark sm:text-5xl">100%</span>
                 <p className="text-[9px] uppercase tracking-[0.3em] font-bold text-brand-dark/30 mt-4">ლოიალურობა</p>
               </div>
               <div className="group">
-                <span className="text-5xl font-serif font-bold text-brand-gold group-hover:text-brand-dark transition-colors duration-500">24/7</span>
+                <span className="text-4xl font-serif font-bold text-brand-gold transition-colors duration-500 group-hover:text-brand-dark sm:text-5xl">24/7</span>
                 <p className="text-[9px] uppercase tracking-[0.3em] font-bold text-brand-dark/30 mt-4">კომუნიკაცია</p>
               </div>
             </div>
@@ -430,7 +430,7 @@ const About = () => {
               <img 
                 src="https://picsum.photos/seed/law-office-premium/1200/1500" 
                 alt="Law Office" 
-                className="w-full h-full object-cover grayscale group-hover:grayscale-0 transition-all duration-1000 scale-110 group-hover:scale-100"
+                className="h-full w-full object-cover grayscale-0 transition-all duration-1000 scale-110 md:grayscale md:group-hover:grayscale-0 group-hover:scale-100"
                 referrerPolicy="no-referrer"
               />
               <div className="absolute inset-0 bg-brand-dark/10 group-hover:bg-transparent transition-all duration-1000" />
@@ -439,7 +439,7 @@ const About = () => {
             <motion.div 
               animate={{ y: [0, -15, 0] }}
               transition={{ duration: 5, repeat: Infinity, ease: "easeInOut" }}
-              className="absolute -bottom-12 -left-12 w-80 h-fit bg-white/80 backdrop-blur-xl p-8 rounded-[2rem] flex flex-col justify-end shadow-2xl border border-white/50"
+              className="absolute inset-x-4 -bottom-6 h-fit rounded-[2rem] border border-white/50 bg-white/80 p-6 shadow-2xl backdrop-blur-xl md:-bottom-12 md:-left-12 md:right-auto md:inset-x-auto md:w-80 md:p-8"
             >
               <Award className="w-12 h-12 mb-6 text-brand-gold" />
               <p className="font-serif text-2xl font-bold leading-tight text-brand-dark">ელიტარული <br /> წარმომადგენლობა</p>
@@ -486,15 +486,15 @@ const Services = () => {
   ];
 
   return (
-    <section id="services" className="py-40 bg-brand-dark relative overflow-hidden">
-      <div className="max-w-7xl mx-auto px-8">
+    <section id="services" className="relative overflow-hidden bg-brand-dark py-24 md:py-40">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex flex-col md:flex-row md:items-end justify-between mb-24 gap-8">
           <div className="max-w-2xl">
             <div className="flex items-center gap-4 mb-8">
               <div className="w-12 h-px bg-brand-gold" />
               <span className="text-brand-gold font-bold text-[10px] tracking-[0.4em] uppercase">პრაქტიკის სფეროები</span>
             </div>
-            <h2 className="text-5xl md:text-7xl font-serif font-bold text-brand-gold tracking-tighter leading-tight">
+            <h2 className="text-4xl font-serif font-bold leading-tight tracking-tighter text-brand-gold sm:text-5xl md:text-7xl">
               სამართლებრივი <br /> <span className="text-white italic font-normal">ექსპერტიზა</span>
             </h2>
           </div>
@@ -511,10 +511,10 @@ const Services = () => {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ delay: index * 0.1 }}
-              className="group relative bg-brand-dark p-12 hover:bg-brand-gold transition-all duration-700 cursor-pointer overflow-hidden"
+              className="group relative cursor-pointer overflow-hidden bg-brand-dark p-8 transition-all duration-700 hover:bg-brand-gold sm:p-12"
             >
               <div className="absolute top-0 right-0 p-8 opacity-10 group-hover:opacity-20 transition-opacity duration-700">
-                <span className="text-8xl font-serif font-bold text-white">0{index + 1}</span>
+                <span className="text-6xl font-serif font-bold text-white sm:text-8xl">0{index + 1}</span>
               </div>
               
               <div className="relative z-10">
@@ -565,15 +565,15 @@ const Blog = () => {
   }, [selectedArticle]);
 
   return (
-    <section id="blog" className="py-40 bg-white overflow-hidden">
-      <div className="max-w-7xl mx-auto px-8">
+    <section id="blog" className="overflow-hidden bg-white py-24 md:py-40">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex flex-col md:flex-row md:items-end justify-between mb-24 gap-8">
           <div className="max-w-2xl">
             <div className="flex items-center gap-4 mb-8">
               <div className="w-12 h-px bg-brand-gold" />
               <span className="text-brand-gold font-bold text-[10px] tracking-[0.4em] uppercase">ბლოგი და სიახლეები</span>
             </div>
-            <h2 className="text-5xl md:text-7xl font-serif font-bold text-brand-gold tracking-tighter leading-tight">
+            <h2 className="text-4xl font-serif font-bold leading-tight tracking-tighter text-brand-gold sm:text-5xl md:text-7xl">
               სამართლებრივი <br /> <span className="text-brand-dark italic font-normal">ბლოგი</span>
             </h2>
           </div>
@@ -585,7 +585,7 @@ const Blog = () => {
           </button>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-16 items-start">
+        <div className="grid grid-cols-1 items-start gap-10 md:grid-cols-2 md:gap-16">
           {BLOG_ARTICLES.map((article, index) => (
             <motion.button
               key={index}
@@ -620,10 +620,10 @@ const Blog = () => {
               </div>
               <div className="flex-1 px-4">
                 <p className="text-[10px] font-bold text-brand-gold uppercase tracking-[0.2em] mb-4">{article.date}</p>
-                <h3 className="text-3xl font-serif font-bold text-brand-dark group-hover:text-brand-gold transition-colors duration-500 leading-snug">
+                <h3 className="text-2xl font-serif font-bold leading-snug text-brand-dark transition-colors duration-500 group-hover:text-brand-gold sm:text-3xl">
                   {article.title}
                 </h3>
-                <p className="mt-4 text-lg font-light leading-relaxed text-brand-dark/55">{article.excerpt}</p>
+                <p className="mt-4 text-base font-light leading-relaxed text-brand-dark/55 sm:text-lg">{article.excerpt}</p>
               </div>
             </motion.button>
           ))}
@@ -707,8 +707,8 @@ const Blog = () => {
 
 const Impact = () => {
   return (
-    <section className="py-40 bg-brand-dark text-white relative overflow-hidden">
-      <div className="max-w-5xl mx-auto px-8 text-center relative z-10">
+    <section className="relative overflow-hidden bg-brand-dark py-24 text-white md:py-40">
+      <div className="relative z-10 mx-auto max-w-5xl px-4 text-center sm:px-6 lg:px-8">
         <motion.div
           initial={{ opacity: 0, y: 40 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -719,11 +719,11 @@ const Impact = () => {
             <Gavel className="w-12 h-12 text-brand-gold" />
           </div>
           
-          <h2 className="text-5xl md:text-7xl font-serif font-bold mb-12 leading-[1.1] tracking-tighter text-brand-gold">
+          <h2 className="mb-10 text-4xl font-serif font-bold leading-[1.08] tracking-tighter text-brand-gold sm:mb-12 sm:text-5xl md:text-7xl md:leading-[1.1]">
             ჩვენ ვიცავთ <span className="text-white italic font-normal">სამართლიანობას</span> <br /> ყველაზე რთულ მომენტებში
           </h2>
           
-          <p className="text-xl md:text-2xl text-white/50 font-light leading-relaxed mb-16 max-w-3xl mx-auto">
+          <p className="mx-auto mb-16 max-w-3xl text-lg leading-relaxed text-white/50 font-light md:text-2xl">
             AM Law Office დგას კლიენტების გვერდით იქ, სადაც სხვები უკან იხევენ. ჩვენი პასუხისმგებლობაა რთული და სენსიტიური საქმეების პროფესიონალური მართვა.
           </p>
           
@@ -763,21 +763,21 @@ const Team = () => {
   ];
 
   return (
-    <section id="team" className="py-40 bg-white">
-      <div className="max-w-7xl mx-auto px-8">
+    <section id="team" className="bg-white py-24 md:py-40">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex flex-col md:flex-row md:items-end justify-between mb-24 gap-8">
           <div className="max-w-2xl">
             <div className="flex items-center gap-4 mb-8">
               <div className="w-12 h-px bg-brand-gold" />
               <span className="text-brand-gold font-bold text-[10px] tracking-[0.4em] uppercase">ჩვენი გუნდი</span>
             </div>
-            <h2 className="text-5xl md:text-7xl font-serif font-bold text-brand-dark tracking-tighter leading-tight">
+            <h2 className="text-4xl font-serif font-bold leading-tight tracking-tighter text-brand-dark sm:text-5xl md:text-7xl">
               პროფესიონალთა <br /> <span className="text-brand-gold italic font-normal">გაერთიანება</span>
             </h2>
           </div>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-16">
+        <div className="grid grid-cols-1 gap-10 md:grid-cols-3 md:gap-16">
           {members.map((member, i) => (
             <motion.div
               key={member.name}
@@ -791,7 +791,7 @@ const Team = () => {
                 <img 
                   src={member.image} 
                   alt={member.name} 
-                  className="w-full h-full object-cover grayscale group-hover:grayscale-0 group-hover:scale-110 transition-all duration-1000"
+                  className="h-full w-full object-cover grayscale-0 transition-all duration-1000 group-hover:scale-110 md:grayscale md:group-hover:grayscale-0"
                   onError={(event) => {
                     if (member.fallbackImage) {
                       event.currentTarget.onerror = null;
@@ -828,20 +828,20 @@ const Team = () => {
 
 const Careers = () => {
   return (
-    <section id="careers" className="py-40 bg-white">
-      <div className="max-w-7xl mx-auto px-8">
-        <div className="bg-brand-pearl rounded-[3rem] p-12 md:p-24 flex flex-col lg:flex-row items-center gap-20 shadow-[0_40px_100px_rgba(0,0,0,0.05)] border border-brand-dark/5">
+    <section id="careers" className="bg-white py-24 md:py-40">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="flex flex-col items-center gap-12 rounded-[2rem] border border-brand-dark/5 bg-brand-pearl p-6 shadow-[0_40px_100px_rgba(0,0,0,0.05)] sm:rounded-[3rem] sm:p-12 md:gap-20 md:p-24 lg:flex-row">
           <div className="lg:w-1/2">
             <div className="w-20 h-20 bg-brand-gold rounded-3xl flex items-center justify-center mb-12 shadow-[0_20px_40px_rgba(197,160,89,0.3)]">
               <GraduationCap className="w-10 h-10 text-white" />
             </div>
-            <h2 className="text-5xl md:text-6xl font-serif font-bold mb-10 leading-[1.1] text-brand-gold tracking-tighter">
+            <h2 className="mb-8 text-4xl font-serif font-bold leading-[1.08] tracking-tighter text-brand-gold sm:text-5xl md:mb-10 md:text-6xl md:leading-[1.1]">
               შემოუერთდით <br /> <span className="text-brand-dark italic font-normal">გუნდს</span>
             </h2>
-            <p className="text-xl text-brand-dark/60 font-light leading-relaxed mb-12">
+            <p className="mb-10 text-base leading-relaxed text-brand-dark/60 font-light sm:mb-12 sm:text-xl">
               ჩვენ მუდმივად ვეძებთ ნიჭიერ იურისტებსა და სტაჟიორებს, რომლებსაც სურთ პროფესიული განვითარება ელიტარულ გარემოში.
             </p>
-            <a href="mailto:info@amlaw.ge?subject=CV%20Submission" className="group inline-flex items-center gap-6 px-10 py-5 bg-brand-dark text-white rounded-full font-bold uppercase tracking-widest hover:bg-brand-gold transition-all duration-500">
+            <a href="mailto:info@amlaw.ge?subject=CV%20Submission" className="group inline-flex w-full items-center justify-center gap-6 rounded-full bg-brand-dark px-8 py-4 font-bold uppercase tracking-[0.18em] text-white transition-all duration-500 hover:bg-brand-gold sm:w-auto sm:px-10 sm:py-5 sm:tracking-widest">
               გამოგვიგზავნე CV
               <div className="w-8 h-8 rounded-full bg-white/10 flex items-center justify-center group-hover:translate-x-2 transition-transform">
                 <ArrowRight className="w-4 h-4" />
@@ -853,11 +853,11 @@ const Careers = () => {
               <img 
                 src="https://picsum.photos/seed/law-career/800/800" 
                 alt="Careers" 
-                className="w-full h-full object-cover grayscale hover:grayscale-0 transition-all duration-1000"
+                className="h-full w-full object-cover grayscale-0 transition-all duration-1000 md:grayscale md:hover:grayscale-0"
                 referrerPolicy="no-referrer"
               />
             </div>
-            <div className="absolute -top-10 -right-10 w-48 h-48 bg-brand-gold/10 backdrop-blur-xl border border-white/20 rounded-full flex items-center justify-center text-center p-6 -rotate-12">
+            <div className="absolute right-4 top-4 hidden h-32 w-32 -rotate-12 items-center justify-center rounded-full border border-white/20 bg-brand-gold/10 p-6 text-center backdrop-blur-xl sm:flex md:-top-10 md:-right-10 md:h-48 md:w-48">
               <p className="text-[10px] font-bold uppercase tracking-widest text-brand-gold">სტაჟირების <br /> პროგრამა</p>
             </div>
           </div>
@@ -869,19 +869,19 @@ const Careers = () => {
 
 const Contact = () => {
   return (
-    <section id="contact" className="py-40 bg-white relative overflow-hidden">
-      <div className="max-w-7xl mx-auto px-8">
+    <section id="contact" className="relative overflow-hidden bg-white py-24 md:py-40">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="grid grid-cols-1 2xl:grid-cols-[minmax(0,0.86fr)_minmax(0,1fr)] items-start gap-16 2xl:gap-24">
           <div className="min-w-0 max-w-2xl">
             <div className="flex items-center gap-4 mb-8">
               <div className="w-12 h-px bg-brand-gold" />
               <span className="text-brand-gold font-bold text-[10px] tracking-[0.4em] uppercase">კონტაქტი</span>
             </div>
-            <h2 className="max-w-[11ch] text-5xl md:text-6xl xl:text-7xl font-serif font-bold text-brand-dark mb-12 tracking-tighter leading-tight">
+            <h2 className="mb-10 max-w-[11ch] text-4xl font-serif font-bold leading-tight tracking-tighter text-brand-dark sm:mb-12 sm:text-5xl md:text-6xl xl:text-7xl">
               დაგვიკავშირდით <br /> <span className="text-brand-gold italic font-normal">კონსულტაციისთვის</span>
             </h2>
             
-            <div className="space-y-12 mt-20">
+            <div className="mt-12 space-y-10 sm:mt-20 sm:space-y-12">
               <div className="flex gap-8 items-start group">
                 <div className="w-16 h-16 rounded-2xl bg-brand-pearl flex items-center justify-center group-hover:bg-brand-gold group-hover:text-white transition-all duration-500">
                   <Phone className="w-6 h-6" />
@@ -918,7 +918,7 @@ const Contact = () => {
             initial={{ opacity: 0, x: 40 }}
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true }}
-            className="glass min-w-0 p-12 md:p-16 rounded-[3rem] shadow-[0_40px_100px_rgba(0,0,0,0.05)] border border-white/50 relative z-10 2xl:ml-auto"
+            className="glass relative z-10 min-w-0 rounded-[2rem] border border-white/50 p-6 shadow-[0_40px_100px_rgba(0,0,0,0.05)] sm:p-12 md:rounded-[3rem] md:p-16 2xl:ml-auto"
           >
             <form className="space-y-10">
               <div className="grid grid-cols-1 md:grid-cols-2 gap-10">
@@ -952,9 +952,9 @@ const Contact = () => {
 
 const Footer = () => {
   return (
-    <footer className="bg-brand-dark text-white pt-32 pb-16">
-      <div className="max-w-7xl mx-auto px-8">
-        <div className="grid grid-cols-1 md:grid-cols-4 gap-20 mb-32">
+    <footer className="bg-brand-dark pt-24 pb-12 text-white md:pt-32 md:pb-16">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="mb-20 grid grid-cols-1 gap-12 md:mb-32 md:grid-cols-4 md:gap-20">
           <div className="md:col-span-2">
             <div className="flex items-center gap-4 mb-10">
               <img

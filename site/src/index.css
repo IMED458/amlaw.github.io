@@ -11,6 +11,13 @@
 }
 
 @layer base {
+  html,
+  body,
+  #root {
+    width: 100%;
+    overflow-x: clip;
+  }
+
   body {
     @apply bg-brand-pearl text-brand-dark selection:bg-brand-gold selection:text-white antialiased;
   }
@@ -21,6 +28,7 @@
   
   h1, h2, h3, h4 {
     @apply tracking-tight;
+    text-wrap: balance;
   }
 }
 
@@ -76,4 +84,11 @@
 
 .animate-float {
   animation: float 6s ease-in-out infinite;
+}
+
+@media (max-width: 640px) {
+  h1,
+  h2 {
+    overflow-wrap: anywhere;
+  }
 }
