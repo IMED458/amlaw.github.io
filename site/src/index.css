@@ -1,94 +1,75 @@
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Noto+Serif+Georgian:wght@400;700&family=Playfair+Display:ital,wght@0,400;0,700;1,400&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600&family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&display=swap');
 @import "tailwindcss";
 
 @theme {
-  --font-sans: "Inter", ui-sans-serif, system-ui, sans-serif;
-  --font-serif: "Noto Serif Georgian", "Playfair Display", serif;
-  --color-brand-gold: #C5A059;
-  --color-brand-dark: #0A0A0A;
-  --color-brand-pearl: #FDFDFD;
-  --color-brand-accent: #1A1A1A;
+  --color-brand-dark: #0f172a;
+  --color-brand-gold: #c3a370;
+  --color-brand-accent: #e2d3b8;
+  --color-brand-pearl: #fdfdfd;
+  --color-brand-surface: #f4f6fa;
+  --font-sans: "Outfit", system-ui, sans-serif;
+  --font-serif: "Playfair Display", Georgia, serif;
 }
 
 @layer base {
-  html,
-  body,
-  #root {
-    width: 100%;
-    overflow-x: clip;
+  html, body, #root {
+    @apply overflow-x-hidden;
   }
 
   body {
-    @apply bg-brand-pearl text-brand-dark selection:bg-brand-gold selection:text-white antialiased;
+    @apply bg-brand-pearl text-brand-dark font-sans selection:bg-brand-gold selection:text-white antialiased;
+    scroll-behavior: smooth;
   }
 
-  section[id] {
-    scroll-margin-top: 8rem;
-  }
-  
-  h1, h2, h3, h4 {
-    @apply tracking-tight;
-    text-wrap: balance;
+  h1, h2, h3, h4, h5, h6 {
+    @apply font-serif tracking-tight text-brand-dark;
   }
 }
 
 @layer utilities {
   .glass {
-    @apply bg-white/40 backdrop-blur-xl border border-white/20 shadow-[0_8px_32px_0_rgba(0,0,0,0.05)];
+    @apply bg-white/70 backdrop-blur-2xl border border-white/50 shadow-[0_8px_32px_rgba(0,0,0,0.04)];
   }
-
   .glass-dark {
-    @apply bg-brand-dark/40 backdrop-blur-xl border border-white/10 shadow-[0_8px_32px_0_rgba(0,0,0,0.2)];
-  }
-
-  .text-reveal {
-    clip-path: polygon(0 0, 100% 0, 100% 100%, 0% 100%);
-  }
-
-  .mask-radial {
-    mask-image: radial-gradient(circle, black 0%, transparent 70%);
-  }
-
-  .premium-shadow {
-    shadow: 0 20px 50px rgba(0, 0, 0, 0.05);
-  }
-
-  .gold-gradient {
-    background: linear-gradient(135deg, #C5A059 0%, #E2C285 50%, #C5A059 100%);
+    @apply bg-brand-dark/80 backdrop-blur-2xl border border-white/10 shadow-[0_8px_32px_rgba(0,0,0,0.2)];
   }
 }
 
-/* Custom Scrollbar */
+/* Hide scrollbar for immersive feel */
 ::-webkit-scrollbar {
-  width: 6px;
+  width: 8px;
 }
-
 ::-webkit-scrollbar-track {
-  background: #f1f1f1;
+  background: var(--color-brand-pearl);
 }
-
 ::-webkit-scrollbar-thumb {
-  background: #C5A059;
-  border-radius: 10px;
+  background: var(--color-brand-accent);
+  border-radius: 4px;
 }
-
 ::-webkit-scrollbar-thumb:hover {
-  background: #A6864A;
+  background: var(--color-brand-gold);
 }
 
-@keyframes float {
-  0% { transform: translateY(0px); }
-  50% { transform: translateY(-20px); }
-  100% { transform: translateY(0px); }
+.transform-style-3d {
+  transform-style: preserve-3d;
 }
 
-.animate-float {
-  animation: float 6s ease-in-out infinite;
+@keyframes marquee {
+  from {
+    transform: translate3d(0, 0, 0);
+  }
+  to {
+    transform: translate3d(-33.333%, 0, 0);
+  }
 }
 
-@media (max-width: 640px) {
-  h1,
-  h2 {
-    overflow-wrap: anywhere;
+.animate-marquee {
+  animation: marquee 26s linear infinite;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .animate-marquee {
+    animation-duration: 1ms;
+    animation-iteration-count: 1;
   }
 }
